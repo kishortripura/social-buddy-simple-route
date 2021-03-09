@@ -5,19 +5,19 @@ import Comments from '../Comments/Comments';
 const PostDetails = () => {
     const {id} = useParams();
     const [post, setPost] = useState({});
-    const [comments, setComments] = useState({});
+    const [comments, setComments] = useState([]);
     useEffect(()=>{
         const url = `https://jsonplaceholder.typicode.com/posts/${id}`;
         fetch(url)
         .then(res => res.json())
         .then(data => setPost(data));
-    }, [])
+    }, [id])
     useEffect(()=>{
         const url = `https://jsonplaceholder.typicode.com/comments?postId=${id}`;
         fetch(url)
         .then(res => res.json())
         .then(data => setComments(data));
-    }, [])
+    }, [id])
     return (
         <div>
             <h2>This is post details : {id}</h2>
